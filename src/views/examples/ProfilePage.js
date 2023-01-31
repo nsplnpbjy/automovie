@@ -1,18 +1,7 @@
 import React from "react";
 
 // reactstrap components
-import {
-  Button,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
-  Container,
-  Row,
-  Col,
-  UncontrolledTooltip
-} from "reactstrap";
+import {Button, Col, Container, Nav, NavItem, NavLink, Row, TabContent, TabPane, UncontrolledTooltip} from "reactstrap";
 
 // core components
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";

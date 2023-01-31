@@ -1,18 +1,14 @@
 /*eslint-disable*/
 import React, {useState} from "react";
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
 
 // reactstrap components
-import { Container } from "reactstrap";
-import {Button} from "reactstrap";
+import {Container} from "reactstrap";
 import {Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import axios from "axios";
-import {FixedSizeList} from "react-window";
 import copy from "copy-to-clipboard";
 // core components
 
-const baseUrl = "http://comradegenrr.top:8090";
+const baseUrl = "https://comradegenrr.top:8090";
 
 function IndexHeader() {
   function Search(text){

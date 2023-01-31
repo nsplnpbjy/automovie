@@ -6,16 +6,16 @@ import Slider from "nouislider";
 
 // reactstrap components
 import {
-  Button,
-  Label,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col,
+    Button,
+    Col,
+    Container,
+    FormGroup,
+    Input,
+    InputGroup,
+    InputGroupAddon,
+    InputGroupText,
+    Label,
+    Row,
 } from "reactstrap";
 
 // core components

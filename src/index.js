@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 // styles for this kit
 import "assets/css/bootstrap.min.css";

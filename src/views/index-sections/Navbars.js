@@ -2,19 +2,19 @@ import React from "react";
 
 // reactstrap components
 import {
-  Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  NavbarBrand,
-  Navbar,
-  NavItem,
-  NavLink,
-  Nav,
-  Container,
-  Row,
-  Col
+    Col,
+    Collapse,
+    Container,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Nav,
+    Navbar,
+    NavbarBrand,
+    NavItem,
+    NavLink,
+    Row,
+    UncontrolledDropdown
 } from "reactstrap";
 
 // core components

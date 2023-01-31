@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 // reactstrap components
-import { Button, Container, Row } from "reactstrap";
+import {Button, Container, Row} from "reactstrap";
 
 // core components
 
