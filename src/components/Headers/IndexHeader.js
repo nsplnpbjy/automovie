@@ -3,16 +3,31 @@ import React, {useState} from "react";
 
 // reactstrap components
 import {Container} from "reactstrap";
-import {Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider, Icon,
+  List,
+  ListItem, ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText, TextField,
+  Typography
+} from "@mui/material";
 import axios from "axios";
 import copy from "copy-to-clipboard";
 // core components
 
 const baseUrl = "https://comradegenrr.top:8090";
-
 function IndexHeader() {
   function Search(text){
-    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{console.log(res.data);setShowDataList(res.data.moviePojoList)});
+    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{console.log(res.data);scrollIntoList();setShowDataList(res.data.moviePojoList)});
+  }
+
+  function scrollIntoList(){
+    let point = document.getElementById("list");
+    point.scrollIntoView();
   }
 
   function copyLink(link){
@@ -23,7 +38,7 @@ function IndexHeader() {
 
   let pageHeader = React.createRef();
   const [searchText,setSearchText] = useState("");
-  const [showDataList,setShowDataList] = useState([{}]);
+  const [showDataList,setShowDataList] = useState([]);
 
   React.useEffect(() => {
     if (window.innerWidth > 991) {
@@ -40,7 +55,7 @@ function IndexHeader() {
   });
 
   return (
-    <>
+    <div style={{ backgroundImage: "url(" + require("assets/img/header.jpg") + ")"}}>
       <div className="page-header clear-filter" filter-color="blue">
         <div
           className="page-header-image"
@@ -72,35 +87,37 @@ function IndexHeader() {
               .
             </h6>
             <div>
-              <input value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} style={{backgroundColor:"lightblue",width:"40%"}}/>
-              <button onClick={()=>{Search(searchText)}}>Search</button>
+              <TextField color={"primary"} size={"small"} value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} style={{fontFamily:"Arial",color:"snow",background: "rgba(255,255,255,0.1)",width:"40%"}}/>
+              <Button variant="contained" onClick={()=>{Search(searchText)}}>Search</Button>
             </div>
-            <Divider></Divider>
-            <Divider></Divider>
           </div>
         </Container>
       </div>
-      <List height={400} width={300} itemSize={46} itemCount={200}>
-        {
-          showDataList.map((iterm)=>{
-            return <Box sx={{ width: '100%',maxHeight:"inherit",color:"lightblue",backgroundColor:"black" }}>
-              <ListItem width = "100%">
-                <ListItemButton onClick={(e)=>{copyLink(iterm.movieUrl)}}>
-                  <ListItemIcon>
-                    <img style={{width:"20px"}} src={require("assets/img/cloud-computing.png")}/>
-                  </ListItemIcon>
-                  <ListItemText>
-                    <h7>{iterm.movieTitle}</h7>
-                    <p>{iterm.movieUrl}</p>
-                  </ListItemText>
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-            </Box>
-          })
-        }
-      </List>
-    </>
+      <div id={"list"} style={{width:"100%",background: "rgba(255,255,255,0)"}} >
+        <Container style={{width:"100%",background: "rgba(255,255,255,0)"}}>
+          <List height={400} width={300} itemSize={46} itemCount={200} style={{background: "rgba(255,255,255,0)"}}>
+            {
+              showDataList.map((iterm)=>{
+                return <Box sx={{ width: '100%',maxWidth:"initial",color:"lightblue",background: "rgba(255,255,255,0)" }}>
+                  <ListItem width = "100%">
+                    <ListItemButton onClick={(e)=>{copyLink(iterm.movieUrl)}}>
+                      <ListItemAvatar >
+                        <Avatar src={iterm.avatarUrl}></Avatar>
+                      </ListItemAvatar>
+                      <ListItemText>
+                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>{iterm.movieTitle}</Typography>
+                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>{iterm.movieUrl}</Typography>
+                      </ListItemText>
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                </Box>
+              })
+            }
+          </List>
+        </Container>
+      </div>
+    </div>
   );
 }
 
