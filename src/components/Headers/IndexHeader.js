@@ -22,7 +22,13 @@ import copy from "copy-to-clipboard";
 const baseUrl = "https://comradegenrr.top:8090";
 function IndexHeader() {
   function Search(text){
-    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{console.log(res.data);scrollIntoList();setShowDataList(res.data.moviePojoList)});
+    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{console.log(res.data);scrollIntoList();
+      if (res.data.moviePojoList!=""){
+        setShowDataList(res.data.moviePojoList)}
+      else {
+        alert("什么都没有找到")
+    }
+    });
   }
 
   function scrollIntoList(){
