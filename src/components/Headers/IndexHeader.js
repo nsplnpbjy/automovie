@@ -73,7 +73,7 @@ function IndexHeader() {
         <Container>
           <div className="content-center brand">
             <h1 className="h1-seo">Movie Hub</h1>
-            <h3 color={"blue"}>Get film download links for free.</h3>
+            <h3 color={"blue"}>Get film magnet links for free.</h3>
             <h6>
               Designed by{" "}
               <a href="http://invisionapp.com/?ref=creativetim" target="_blank">
@@ -108,11 +108,12 @@ function IndexHeader() {
                   <ListItem width = "100%">
                     <ListItemButton onClick={(e)=>{copyLink(iterm.movieUrl)}}>
                       <ListItemAvatar >
-                        <Avatar src={iterm.avatarUrl}></Avatar>
+                        <img style={{width:"80%"}} src={iterm.avatarUrl}></img>
                       </ListItemAvatar>
                       <ListItemText>
-                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>{iterm.movieTitle}</Typography>
-                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>{iterm.movieUrl}</Typography>
+                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>名称：{iterm.movieTitle}</Typography>
+                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>磁力链接：{iterm.movieUrl}</Typography>
+                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>来源：{iterm.lootFrom}</Typography>
                       </ListItemText>
                     </ListItemButton>
                   </ListItem>
