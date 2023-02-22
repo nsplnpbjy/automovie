@@ -22,7 +22,7 @@ import copy from "copy-to-clipboard";
 const baseUrl = "https://comradegenrr.top:8090";
 function IndexHeader() {
   function Search(text){
-    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{console.log(res.data);scrollIntoList();
+    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{setShowDataList([]);scrollIntoList();
       if (res.data.moviePojoList!=""){
         setShowDataList(res.data.moviePojoList)}
       else {
