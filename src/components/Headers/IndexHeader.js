@@ -23,15 +23,6 @@ import copy from "copy-to-clipboard";
 const baseUrl = "https://comradegenrr.top:8090";
 function IndexHeader() {
   function Search(text){
-    if(text.length<7){
-      text = text + "       ".substring(0, 7 - text.length);
-    }
-    if(text.length > 15){
-      text = text.substr(0, 15);
-    }
-    var n=mybase64.encode(text);
-    n = n.replace(/\//g, "_").replace(/\+/g, "-").replace(/=/g, "");
-    n = n.slice(0, 6) + "j" + n.slice(6);
     return axios.post(baseUrl+"/s",{searchText:n}).then((res)=>{setShowDataList([]);scrollIntoList();
       if (res.data.moviePojoList!=""){
         setShowDataList(res.data.moviePojoList)}
