@@ -107,12 +107,12 @@ function IndexHeader() {
                   <ListItem width = "100%">
                     <ListItemButton onClick={(e)=>{copyLink(iterm.movieUrl)}}>
                       <ListItemAvatar style={{width:"50%"}}>
-                        <img style={{width:"80%",height:"50%"}} src={iterm.avatarUrl}></img>
+                        <img style={{width:"80%",height:"100%"}} src={iterm.avatarUrl}></img>
                       </ListItemAvatar>
                       <ListItemText>
-                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>名称：{iterm.movieTitle}</Typography>
-                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>磁力链接：{iterm.movieUrl}</Typography>
-                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>来源：{iterm.lootFrom}</Typography>
+                        <Typography fontSize={"small"} maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>名称：{iterm.movieTitle}</Typography>
+                        <Typography fontSize={"small"} maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>磁力链接：{iterm.movieUrl}</Typography>
+                        <Typography fontSize={"small"} maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>来源：{iterm.lootFrom}</Typography>
                       </ListItemText>
                     </ListItemButton>
                   </ListItem>
