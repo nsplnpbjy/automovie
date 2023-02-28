@@ -1,7 +1,5 @@
 /*eslint-disable*/
 import React, {useState} from "react";
-import "./base64.js"
-
 // reactstrap components
 import {Container} from "reactstrap";
 import {
@@ -108,13 +106,13 @@ function IndexHeader() {
                 return <Box sx={{ width: '100%',maxWidth:"initial",color:"lightblue",background: "rgba(255,255,255,0)" }}>
                   <ListItem width = "100%">
                     <ListItemButton onClick={(e)=>{copyLink(iterm.movieUrl)}}>
-                      <ListItemAvatar >
-                        <img style={{width:"80%"}} src={iterm.avatarUrl}></img>
+                      <ListItemAvatar style={{width:"50%"}}>
+                        <img style={{width:"80%",height:"50%"}} src={iterm.avatarUrl}></img>
                       </ListItemAvatar>
                       <ListItemText>
-                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>名称：{iterm.movieTitle}</Typography>
-                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>磁力链接：{iterm.movieUrl}</Typography>
-                        <Typography maxWidth={"100%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>来源：{iterm.lootFrom}</Typography>
+                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>名称：{iterm.movieTitle}</Typography>
+                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>磁力链接：{iterm.movieUrl}</Typography>
+                        <Typography maxWidth={"80%"} style={{wordBreak:"break-all",wordWrap:"break-word"}}>来源：{iterm.lootFrom}</Typography>
                       </ListItemText>
                     </ListItemButton>
                   </ListItem>
