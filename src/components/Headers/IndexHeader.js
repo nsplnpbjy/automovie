@@ -92,8 +92,10 @@ function IndexHeader() {
               .
             </h6>
             <div>
-              <TextField color={"primary"} size={"small"} value={searchText} onChange={(e)=>{setSearchText(e.target.value)}} style={{fontFamily:"Arial",color:"snow",background: "rgba(255,255,255,0.1)",width:"40%"}}/>
-              <Button variant="contained" onClick={()=>{Search(searchText)}}>Search</Button>
+              <TextField color={"primary"} size={"small"} value={searchText}
+              onKeyDown={(e)=>{if(e.keyCode==13){Search(searchText)}}}
+              onChange={(e)=>{setSearchText(e.target.value)}} style={{fontFamily:"Arial",color:"snow",background: "rgba(255,255,255,0.1)",width:"40%"}}/>
+              <Button variant="contained"  onClick={()=>{Search(searchText)}}>Search</Button>
             </div>
           </div>
         </Container>
