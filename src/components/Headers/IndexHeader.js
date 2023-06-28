@@ -21,7 +21,7 @@ import copy from "copy-to-clipboard";
 import { blue } from "@mui/material/colors";
 // core components
 
-const baseUrl = "https://127.0.0.1:8090";
+const baseUrl = "https://comradegenrr.top:8090";
 function IndexHeader() {
   function Search(text){
     return axios.post(baseUrl+"/s",{searchText:text},{headers:{'token':token}}).then((res)=>{setShowDataList([]);scrollIntoList();
@@ -149,7 +149,7 @@ function IndexHeader() {
                     <label>username</label><input name="username" onChange={(e)=>setUsername(e.target.value)} color={"primary"} size="small"></input>
                   </h1>
                   <h1>
-                    <label>password</label><input name="password" onChange={(e)=>setPassword(e.target.value)} color={"primary"} size="small"></input>
+                    <label>password</label><input type='password' name="password" onChange={(e)=>setPassword(e.target.value)} color={"primary"} size="small"></input>
                   </h1>
                   <Button sx={{color:authenticationColor.textColor,backgroundColor:authenticationColor.backgroundColor}} 
                   onClick={handleSubmit(baseUrl+'/login')} type="submit">登陆</Button>
