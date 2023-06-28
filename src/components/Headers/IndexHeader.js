@@ -1,11 +1,13 @@
 /*eslint-disable*/
 import React, {useState} from "react";
 // reactstrap components
-import {Container} from "reactstrap";
+import {Card, Container} from "reactstrap";
 import {
+  Alert,
   Avatar,
   Box,
   Button,
+  CardContent,
   Divider, Icon,
   List,
   ListItem, ListItemAvatar,
@@ -16,12 +18,19 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import copy from "copy-to-clipboard";
+import { blue } from "@mui/material/colors";
 // core components
 
-const baseUrl = "https://comradegenrr.top:8090";
+const baseUrl = "https://127.0.0.1:8090";
 function IndexHeader() {
   function Search(text){
-    return axios.post(baseUrl+"/s",{searchText:text}).then((res)=>{setShowDataList([]);scrollIntoList();
+    return axios.post(baseUrl+"/s",{searchText:text},{headers:{'token':token}}).then((res)=>{setShowDataList([]);scrollIntoList();
+      if(res.data.code!=null){
+        if(res.data.code==-1){
+          alert(res.data.msg);
+          return;
+        }
+      }
       if (res.data.moviePojoList!=""){
         setShowDataList(res.data.moviePojoList)}
       else {
@@ -44,6 +53,58 @@ function IndexHeader() {
   let pageHeader = React.createRef();
   const [searchText,setSearchText] = useState("");
   const [showDataList,setShowDataList] = useState([]);
+  const [authenticationColor,setAuthenticationColor] = useState({
+    textColor:'red',
+    backgroundColor:'yellow'
+  });
+  const [token,setToken] = useState('');
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  const [loginEnable,setLoginEnable] = useState('none');
+
+  const handleSubmit = (url) => (event) => {
+    // 阻止默认的表单提交行为
+    event.preventDefault();
+    // 获取表单数据
+    const formData =  new FormData(); // 使用form而不是this或其他的选择器
+    formData.append('username',username);
+    formData.append('password',password);
+      // 发送表单数据到URL
+    axios.post(url,formData).then((res)=>{
+      if(res.data.code != null){
+        if(res.data.code=='0'){
+          setToken(res.data.token);
+          setLoginEnable('none');
+          setAuthenticationColor({
+            textColor:'green',
+            backgroundColor:'lightwihte'
+          })
+          alert(res.data.msg);
+        }
+        else if(res.data.code=='1'){
+          alert(res.data.msg);
+        }
+        else if(res.data.code=='-2'){
+          setToken('');
+          setAuthenticationColor({
+            textColor:'red',
+            backgroundColor:'yellow'
+          })
+          alert(res.data.msg);
+        }
+        else if(res.data.code=='-3'){
+          setToken('');
+          setAuthenticationColor({
+            textColor:'red',
+            backgroundColor:'yellow'
+          })
+        }
+        else{
+          alert(res.data.msg);
+        }
+      }
+    });
+  };
 
   React.useEffect(() => {
     if (window.innerWidth > 991) {
@@ -72,6 +133,31 @@ function IndexHeader() {
         <Container>
           <div className="content-center brand">
             <h1 className="h1-seo">Movie Hub</h1>
+            <Button sx={{color:authenticationColor.textColor,backgroundColor:authenticationColor.backgroundColor}}
+            onClick = {(e)=>{
+              if(loginEnable=='none'){
+                setLoginEnable('block');
+              }
+              if(loginEnable == 'block'){
+                setLoginEnable('none');
+              }
+            }}>Authentication</Button>
+            <Card style={{display:loginEnable,background: "rgba(255,255,255,0)"}}>
+              <CardContent sx={{color:'black',fontFamily:"Arial",fontSize:'50%', opacity: 0.5  }}>
+                <form>
+                  <h1>
+                    <label>username</label><input name="username" onChange={(e)=>setUsername(e.target.value)} color={"primary"} size="small"></input>
+                  </h1>
+                  <h1>
+                    <label>password</label><input name="password" onChange={(e)=>setPassword(e.target.value)} color={"primary"} size="small"></input>
+                  </h1>
+                  <Button sx={{color:authenticationColor.textColor,backgroundColor:authenticationColor.backgroundColor}} 
+                  onClick={handleSubmit(baseUrl+'/login')} type="submit">登陆</Button>
+                  <Button sx={{color:authenticationColor.textColor,backgroundColor:authenticationColor.backgroundColor}} 
+                  onClick={handleSubmit(baseUrl+'/regist')} type="submit">注册</Button>
+                </form>
+              </CardContent>
+            </Card>
             <h3 color={"blue"}>Get film magnet links for free.</h3>
             <h6>
               Designed by{" "}
